@@ -1,5 +1,7 @@
 # Mann-Whitney U Test
 
+[![Build Status](https://travis-ci.org/lukem512/mann-whitney-utest.svg?branch=master)](https://travis-ci.org/lukem512/mann-whitney-utest) ![Build Status](https://david-dm.org/lukem512/mann-whitney-utest.svg)
+
 This is an NPM module that allows you to perform the Mann-Whitney U test on numeric samples. The Mann-Whitney U test is a nonparametric statistical test that does not assume a normal distribution.
 
 To use it, simple install via NPM and include it in your project file.
