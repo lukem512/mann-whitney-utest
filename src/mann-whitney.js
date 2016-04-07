@@ -88,12 +88,12 @@ var check = module.exports.check = function(u, samples) {
 var test = module.exports.test = function(samples, key) {
 
 	// Perform validation
-	if (samples.constructor !== Array) throw Error('Samples must be an array');
+	if (!Array.isArray(samples)) throw Error('Samples must be an array');
 	if (samples.length !== 2) throw Error('Samples must contain exactly two samples');
 
 	for (var i = 0; i < 2; i++) {
-		if (!samples[i] || samples[i].length == 0) throw Error('Samples cannot be null');
-		if (samples[i].constructor !== Array) throw Error('Samples must be an array');
+		if (!samples[i] || samples[i].length == 0) throw Error('Samples cannot be empty');
+		if (!Array.isArray(samples[i])) throw Error('Sample ' + i + ' must be an array');
 	}
 
 	// Rank the entire list of observations

@@ -45,6 +45,42 @@ var tests = [
 		name: 'Empty samples',
 		rejected: true,
 		samples: [[],[]]
+	},
+
+	{
+		name: 'Non-array sample (string)',
+		rejected: true,
+		samples: 'hello'
+	},
+
+	{
+		name: 'Non-array sample (numeric)',
+		rejected: true,
+		samples: 30
+	},
+
+	{
+		name: 'Non-array sample (boolean)',
+		rejected: true,
+		samples: true
+	},
+
+	{
+		name: 'Non-array sample (object)',
+		rejected: true,
+		samples: { some: 'json' }
+	},
+
+	{
+		name: 'Non-array sample (function)',
+		rejected: true,
+		samples: function() { return []; }
+	},
+
+	{
+		name: 'Non-array sample (null)',
+		rejected: true,
+		samples: null
 	}
 ];
 
