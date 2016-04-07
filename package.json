@@ -1,0 +1,31 @@
+{
+  "name": "mann-whitney-utest",
+  "version": "1.0.0",
+  "description": "The Mann-Whitney U test is a nonparametric statistical test",
+  "main": "src/mann-whitney.js",
+  "scripts": {
+    "test": "node test/test.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/lukem512/mann-whitney-utest.git"
+  },
+  "keywords": [
+    "u",
+    "test",
+    "mann-whitney",
+    "mann–whitney–wilcoxon",
+    "wilcoxon–mann–whitney",
+    "wilcoxon rank-sum",
+    "mww",
+    "rank-sum",
+    "statistics",
+    "nonparametric"
+  ],
+  "author": "Luke Mitchell",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/lukem512/mann-whitney-utest/issues"
+  },
+  "homepage": "https://github.com/lukem512/mann-whitney-utest"
+}
