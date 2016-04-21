@@ -100,13 +100,11 @@ var criticalValue = module.exports.criticalValue = function(u, samples) {
 		});
 	});
 
-	console.log('Counts', counts);
-
 	// Find any tied ranks
-	var ties = Object.keys(counts).filter(function(key) { return counts[key] > 1 });
+	var ties = Object.keys(counts)
+		.filter(function(key) { return counts[key] > 1 })
+		.map(function(tie) { return counts[tie] });
 	var k = ties.length;
-
-	console.log('Ties',ties);
 
 	// Compute correction
 	var correction = 0;
