@@ -17,11 +17,22 @@ Then, to test an array of samples, use the `test` method.
 	console.log(mwu.test(samples)); // [ 4, 5 ]
 ```
 
+To test whether the result is significant, use the `significant` method. This tests the U-value against an approximate critical value.
+
+```
+	var u = mwu.test(samples);
+	if (mwu.significant(u, samples)) {
+		console.log('The data is significant!');
+	} else {
+		console.log('The data is not significant.');
+	}
+```
+
 You can check your answers using the `check` method. This exploits a property of the Mann-Whitney test that ensures the sum of the U values does not exceed the product of the number of observations.
 
 
 ```
-	var u = mwu.test(samples)
+	var u = mwu.test(samples);
 	if (mwu.check(u, samples)) {
 		console.log('The values are correct');
 	}
