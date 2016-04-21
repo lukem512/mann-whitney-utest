@@ -30,7 +30,6 @@ To test whether the result is significant, use the `significant` method. This te
 
 You can check your answers using the `check` method. This exploits a property of the Mann-Whitney test that ensures the sum of the U values does not exceed the product of the number of observations.
 
-
 ```
 	var u = mwu.test(samples);
 	if (mwu.check(u, samples)) {
