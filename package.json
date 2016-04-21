@@ -1,6 +1,6 @@
 {
   "name": "mann-whitney-utest",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "description": "The Mann-Whitney U test is a nonparametric statistical test",
   "main": "src/mann-whitney.js",
   "scripts": {
