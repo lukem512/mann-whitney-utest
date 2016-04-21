@@ -24,7 +24,7 @@ var rank = function(list) {
 	for (var i = 0; i < list.length; /* nothing */ ) {
 		var count = 1;
 		var total = list[i].rank;
-		
+
 		for (var j = 0; list[i + j + 1] && (list[i + j][__key] === list[i + j + 1][__key]); j++) {
 			total += list[i + j + 1].rank;
 			count++;
@@ -79,6 +79,52 @@ var uValue = function(rank, observations) {
 // of the number of observations.
 var check = module.exports.check = function(u, samples) {
 	return (u[0] + u[1]) == (samples[0].length * samples[1].length);
+};
+
+// Approximate the crticial value for the samples.
+// This is necessary when the sample sizes are greater than 20
+// as the U tables are limited to 20x20.
+// https://en.wikipedia.org/wiki/Mann%E2%80%93Whitney_U_test#Normal_approximation_and_tie_correction
+var criticalValue = module.exports.criticalValue = function(u, samples) {
+	var uVal = Math.min(u[0], u[1]);
+	var prod = samples[0].length * samples[1].length;
+	var n  = samples[0].length + samples[1].length;
+	var mean = prod / 2;
+
+	// Count the ranks
+	var counts = {};
+	samples.forEach(function(sample) {
+		sample.forEach(function(o) {
+			if (!counts[o]) counts[0] = 1;
+			else counts[o]++;
+		});
+	});
+
+	// Find any tied ranks
+	var ties = Object.keys(counts).filter(function(key) { return counts[key] > 1 });
+	var k = ties.length;
+
+	// Compute correction
+	var correction = 0;
+	for (var i = 0; i < k; i++) {
+		correction += (Math.pow(ties[i],3) - ties[i]) / (n * (n-1));
+	}
+
+	// Compute standard deviation using correction for ties
+	var stddev = Math.sqrt(
+		(prod/12) * ((n + 1) - correction)
+	);
+
+	// Approximate the critical value
+	var z = Math.abs((uVal - mean) / stddev);
+	return z;
+};
+
+// Test the result for significance.
+// A result is significant if the lesser U-value is
+// less than the critical value.
+var significant = module.exports.significant = function(u, samples) {
+	return (Math.min(u[0], u[1]) < criticalValue(u, samples));
 };
 
 // Perform te Mann-Whitney U test on an array of samples.
