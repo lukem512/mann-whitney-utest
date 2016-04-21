@@ -95,14 +95,18 @@ var criticalValue = module.exports.criticalValue = function(u, samples) {
 	var counts = {};
 	samples.forEach(function(sample) {
 		sample.forEach(function(o) {
-			if (!counts[o]) counts[0] = 1;
+			if (!counts[o]) counts[o] = 1;
 			else counts[o]++;
 		});
 	});
 
+	console.log('Counts', counts);
+
 	// Find any tied ranks
 	var ties = Object.keys(counts).filter(function(key) { return counts[key] > 1 });
 	var k = ties.length;
+
+	console.log('Ties',ties);
 
 	// Compute correction
 	var correction = 0;
